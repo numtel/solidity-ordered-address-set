@@ -35,6 +35,9 @@ exports.basicFunctions = async function({
   assert.strictEqual(await test.methods.keyAtIndex(3).call(), accounts[1]);
   assert.strictEqual(await test.methods.keyAtIndex(4).call(), accounts[4]);
 
+  // Test scanning
+  assert.strictEqual(Number(await test.methods.searchKey(accounts[1]).call()), 3);
+
   // Remove from start
   await test.sendFrom(accounts[0]).remove(0);
   assert.strictEqual(Number(await test.methods.count().call()), 4);
